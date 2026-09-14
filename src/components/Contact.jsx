@@ -37,8 +37,25 @@ export default function Contact() {
       return;
     }
     setErrors({});
+
+    // Build mailto URL with form data
+    const emailBody = [
+      `Name: ${formData.name}`,
+      `Email: ${formData.email}`,
+      formData.phone ? `Phone: ${formData.phone}` : null,
+      ``,
+      formData.message,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    const mailtoUrl = `mailto:${profile.email}?subject=${encodeURIComponent(
+      formData.subject
+    )}&body=${encodeURIComponent(emailBody)}`;
+
+    window.location.href = mailtoUrl;
+
     setSubmitted(true);
-    // Reset form
     setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     setTimeout(() => setSubmitted(false), 5000);
   };
