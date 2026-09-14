@@ -3,7 +3,7 @@ export const profile = {
   title: "ERP SOFTWARE DEVELOPER | WEB DEVELOPER",
   description:
     "Computer Science & Engineering professional with experience in ERP software development, website development, accounts management, and IT operations. Skilled in building business-focused ERP solutions, database management, web technologies, and AI-assisted coding. Passionate about using technology to automate processes, improve efficiency, and solve real-world business problems.",
-  email: "anjamul0036@gmail.com",
+  email: "amtechsolutions0036@gmail.com",
   phone: "01684369545",
   location: "Dhaka, Bangladesh",
   linkedin: "linkedin.com/in/anjamul0036",

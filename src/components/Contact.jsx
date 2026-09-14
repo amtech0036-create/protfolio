@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { Mail, Phone, MapPin, Linkedin, Facebook, Send } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { profile } from "../data/profile";
 import SectionTitle from "./SectionTitle";
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_s1lei9a";
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "nsREBmtHD4dPIg41s";
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "gIwcy0GkWhe01fV1I";
 
 export default function Contact() {
   const [ref, isVisible] = useScrollAnimation(0.05);
@@ -29,7 +34,10 @@ export default function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const formRef = useRef(null);
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -37,27 +45,35 @@ export default function Contact() {
       return;
     }
     setErrors({});
+    setSending(true);
 
-    // Build mailto URL with form data
-    const emailBody = [
-      `Name: ${formData.name}`,
-      `Email: ${formData.email}`,
-      formData.phone ? `Phone: ${formData.phone}` : null,
-      ``,
-      formData.message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    const mailtoUrl = `mailto:${profile.email}?subject=${encodeURIComponent(
-      formData.subject
-    )}&body=${encodeURIComponent(emailBody)}`;
-
-    window.location.href = mailtoUrl;
-
-    setSubmitted(true);
-    setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    setTimeout(() => setSubmitted(false), 5000);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          from_phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: profile.email,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error("Email send failed:", err);
+      if (err.text) {
+        alert(`Email error: ${err.text}`);
+      } else {
+        alert(`Email error: ${JSON.stringify(err)}`);
+      }
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -164,6 +180,7 @@ export default function Contact() {
             }`}
           >
             <form
+              ref={formRef}
               onSubmit={handleSubmit}
               className="bg-white dark:bg-gray-800/30 rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-gray-800 shadow-lg"
             >
@@ -278,10 +295,20 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-primary-500/25"
+                disabled={sending}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-primary-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Send size={16} />
-                Send Message
+                {sending ? (
+                  <>
+                    <svg className="animate-spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" strokeOpacity="0.25" /><path d="M12 2a10 10 0 0 1 10 10" /></svg>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
