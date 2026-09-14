@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Services from "./components/Services";
+import MyCompany from "./components/MyCompany";
 import Projects from "./components/Projects";
 import ErpShowcase from "./components/ErpShowcase";
 import Experience from "./components/Experience";
@@ -24,6 +25,7 @@ export default function App() {
         <Projects />
         <ErpShowcase />
         <Services />
+        <MyCompany />
         <Experience />
         <WorkProcess />
         <Contact />

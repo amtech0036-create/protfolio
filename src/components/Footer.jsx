@@ -12,14 +12,13 @@ export default function Footer() {
     <footer className="bg-gray-50 dark:bg-gray-900/50 border-t border-gray-200/50 dark:border-gray-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
-          {/* Name */}
-          <a
-            href="#home"
-            className="inline-block font-bold text-xl text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors mb-2"
-          >
-            {profile.name.split(" ")[0]}
-            <span className="text-primary-600 dark:text-primary-400">.</span>
-          </a>
+          {/* Name */}            <a
+              href="#home"
+              className="inline-block font-bold text-xl text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors mb-2"
+            >
+              {profile.name}
+              <span className="text-primary-600 dark:text-primary-400">.</span>
+            </a>
 
           {/* Title */}
           <p className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-1">

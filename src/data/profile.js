@@ -7,7 +7,7 @@ export const profile = {
   phone: "01684369545",
   location: "Dhaka, Bangladesh",
   linkedin: "linkedin.com/in/anjamul0036",
-  facebook: "facebook.com/anjamul",
+  facebook: "facebook.com/anjamul0036",
   resumeUrl: "/resume.pdf",
   primaryFocus: [
     "ERP Software Development",

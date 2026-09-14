@@ -39,7 +39,7 @@ export default function Navbar({ isDark, toggleTheme }) {
             href="#home"
             className="font-bold text-lg text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
           >
-            Anjamul<span className="text-primary-600 dark:text-primary-400">.</span>
+            Md Anjamul Islam Anim<span className="text-primary-600 dark:text-primary-400">.</span>
           </a>
 
           {/* Desktop Nav */}
