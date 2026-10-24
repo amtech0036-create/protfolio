@@ -54,7 +54,7 @@ export default function MyCompany() {
                 </div>
 
                 <a
-                  href="https://amtechsolutionsbd.vercel.app/"
+                  href="https://amtechsolutionsbd.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-primary-500/25 group"
@@ -80,7 +80,7 @@ export default function MyCompany() {
                   {/* URL Bar */}
                   <div className="bg-gray-100 dark:bg-gray-900/50 rounded-lg px-3 py-1.5 mb-3">
                     <span className="text-[10px] text-gray-400 dark:text-gray-500 font-mono">
-                      amtechsolutionsbd.vercel.app
+                      amtechsolutionsbd.com
                     </span>
                   </div>
 

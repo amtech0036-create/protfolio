@@ -53,7 +53,7 @@ export default function ErpShowcase() {
                     <Package size={16} className="text-white" />
                   </div>
                   <span className="font-semibold text-gray-900 dark:text-white">
-                    AMTech ERP
+                    Prime Hisab
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
