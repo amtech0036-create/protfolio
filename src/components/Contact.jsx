@@ -5,8 +5,8 @@ import { useScrollAnimation } from "../hooks/useScrollAnimation";
 import { profile } from "../data/profile";
 import SectionTitle from "./SectionTitle";
 
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_s1lei9a";
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "nsREBmtHD4dPIg41s";
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_e9jlogm";
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_fol61h9";
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "gIwcy0GkWhe01fV1I";
 
 export default function Contact() {
